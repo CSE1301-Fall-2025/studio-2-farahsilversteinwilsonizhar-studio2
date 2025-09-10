@@ -11,34 +11,34 @@ public class Ruin {
         System.out.println("How many days will you play?");
         int totalSimulations = in.nextInt();
         int daysPlayed = 0;
-        while (totalSimulations >= daysPlayed) {
+        int daysRuined = 0;
+        while (totalSimulations > daysPlayed) {
             int money = startAmount;
-            int daysRuined = 0;
-            while (startAmount < winLimit && startAmount > 0) {
-                
-                double chance = Math.random();
-                if ( chance > winChance) {
-                    System.out.println("You won!");
-                    money++;
-                } else {
-                    System.out.println("You lost!");
-                    money--;
-                }
-                if (money == winLimit) {
-                    System.out.println("You win! You cannot play again.");
-                    money = startAmount;
-                } else if (money == 0) {
-                    System.out.println("You lose! You cannot play anymore.");
-                    money = startAmount;
-                    daysRuined++;
+            if (totalSimulations > daysPlayed) {
+                while ((startAmount < winLimit && startAmount > 0)&& (totalSimulations > daysPlayed)) { //these conditions were always true, had to readd initial while loop condition here
+                    double chance = Math.random();
+                    if ( chance > (1-winChance)) {
+                        System.out.println("You won!");
+                        money++;
+                    } else {
+                        System.out.println("You lost!");
+                        money--;
+                    }
+                    if (money == winLimit) {
+                        System.out.println("You win! You cannot play again.");
+                        money = startAmount;
+                        daysPlayed++;
+                    } else if (money == 0) {
+                        System.out.println("You lose! You cannot play anymore.");
+                        money = startAmount;
+                        daysRuined++;
+                        daysPlayed++;
                 } else {
                     System.out.println("You have " + money + " left. Play again.");
                 }
-                
-        }
-        daysPlayed++;
-        if (totalSimulations == daysPlayed) {
-             System.out.println("You have a ruin rate of " + daysRuined/daysPlayed);
+                }
+        } else {
+            System.out.println("You have a ruin rate of " + daysRuined/daysPlayed);
         }
         }
         
