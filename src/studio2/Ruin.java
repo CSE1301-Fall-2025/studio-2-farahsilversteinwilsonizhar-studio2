@@ -12,9 +12,8 @@ public class Ruin {
         int totalSimulations = in.nextInt();
         int daysPlayed = 0;
         int daysRuined = 0;
-        while (totalSimulations > daysPlayed) {
-            int money = startAmount;
-            if (totalSimulations > daysPlayed) {
+            while (totalSimulations > daysPlayed) {
+                int money = startAmount;
                 while ((startAmount < winLimit && startAmount > 0)&& (totalSimulations > daysPlayed)) { //these conditions were always true, had to readd initial while loop condition here
                     double chance = Math.random();
                     if ( chance > (1-winChance)) {
@@ -33,14 +32,14 @@ public class Ruin {
                         money = startAmount;
                         daysRuined++;
                         daysPlayed++;
-                } else {
-                    System.out.println("You have " + money + " left. Play again.");
+                    } else {
+                        System.out.println("You have " + money + " left. Play again.");
+                    }
                 }
-                }
-        } else {
-            System.out.println("You have a ruin rate of " + daysRuined/daysPlayed);
-        }
-        }
+            }
+        System.out.println("You have a ruin rate of " + daysRuined/daysPlayed);
+    
+        
         
        
         
