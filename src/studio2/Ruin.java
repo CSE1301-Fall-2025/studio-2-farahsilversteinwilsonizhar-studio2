@@ -37,7 +37,18 @@ public class Ruin {
                     }
                 }
             }
-        System.out.println("You have a ruin rate of " + daysRuined/daysPlayed);
+        double daysRuined1 = daysRuined * 1000.0/10.0;
+        double daysPlayed1 = daysPlayed * 1000.0/1000.0;
+        double ruinRate = (daysRuined1/daysPlayed1);
+        System.out.println("You have a ruin rate of " + ruinRate);
+        double a = ((1-winChance)/winChance);
+        if (winChance==0.5) {
+            double expectedRuinHalf = ((1-startAmount)/winLimit);
+            System.out.println("The expected ruin rate was " + expectedRuinHalf);
+        } else {
+            double expectedRuin = ((Math.pow(a, startAmount)-Math.pow(a, winLimit))/(1-Math.pow(a, winLimit)));
+            System.out.println("The expected ruin rate was " + expectedRuin);
+        }
     
         
         
